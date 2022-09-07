@@ -2,5 +2,6 @@ keycloak:
   auth-server-url: http://keycloak:8080/
   realm: EpisodeSwitcher
   resource: episode-switcher
+  bearer-only: true
 server:
   port: 8080
