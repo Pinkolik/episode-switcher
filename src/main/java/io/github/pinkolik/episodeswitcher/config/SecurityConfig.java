@@ -5,6 +5,7 @@ import org.keycloak.adapters.springsecurity.authentication.KeycloakAuthenticatio
 import org.keycloak.adapters.springsecurity.config.KeycloakWebSecurityConfigurerAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
@@ -35,8 +36,8 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         http.csrf().disable();
         //@formatter:off
         http.authorizeRequests()
-            .antMatchers("/api/check").hasRole("USER")
-            .antMatchers("/api/command").hasRole("ALISA")
+            .antMatchers(HttpMethod.HEAD, "/api/alisa/v1.0").permitAll()
+            .antMatchers("/api/alisa/v1.0/**").hasRole("ALISA")
             .anyRequest().denyAll();
         //@formatter:on
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
