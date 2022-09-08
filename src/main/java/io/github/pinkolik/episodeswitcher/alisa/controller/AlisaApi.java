@@ -1,6 +1,8 @@
 package io.github.pinkolik.episodeswitcher.alisa.controller;
 
-import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.GetDevicesResponseDto;
+import io.github.pinkolik.episodeswitcher.alisa.dto.action.ActionRequestDto;
+import io.github.pinkolik.episodeswitcher.alisa.dto.action.ActionResponseDto;
+import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.DevicesResponseDto;
 import io.github.pinkolik.episodeswitcher.alisa.dto.unlinkuser.UnlinkUserResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -15,5 +17,8 @@ public interface AlisaApi {
     ResponseEntity<UnlinkUserResponseDto> unlinkUser(@RequestHeader("X-Request-Id") String requestId);
 
     @GetMapping("/user/devices")
-    ResponseEntity<GetDevicesResponseDto> getDevices(@RequestHeader("X-Request-Id") String requestId);
+    ResponseEntity<DevicesResponseDto> getDevices(@RequestHeader("X-Request-Id") String requestId);
+
+    @PostMapping("/user/devices/action")
+    ResponseEntity<ActionResponseDto> makeAction(@RequestHeader("X-Request-Id") String requestId, @RequestBody ActionRequestDto request);
 }

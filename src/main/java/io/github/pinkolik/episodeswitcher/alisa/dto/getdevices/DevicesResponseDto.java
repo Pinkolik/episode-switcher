@@ -6,6 +6,6 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(callSuper = true)
-public class GetDevicesResponseDto extends BaseResponse<DevicesPayload> {
+public class DevicesResponseDto extends BaseResponse<DevicesPayload> {
 
 }

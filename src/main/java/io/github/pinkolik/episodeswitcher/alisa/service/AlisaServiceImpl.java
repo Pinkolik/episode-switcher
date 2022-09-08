@@ -8,7 +8,7 @@ import io.github.pinkolik.episodeswitcher.alisa.dto.common.enums.InstanceType;
 import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.Device;
 import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.DeviceInfo;
 import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.DevicesPayload;
-import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.GetDevicesResponseDto;
+import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.DevicesResponseDto;
 import io.github.pinkolik.episodeswitcher.alisa.dto.unlinkuser.UnlinkUserResponseDto;
 import io.github.pinkolik.episodeswitcher.util.KeycloakUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -69,9 +69,9 @@ public class AlisaServiceImpl implements AlisaService {
     }
 
     @Override
-    public GetDevicesResponseDto getDevices(String requestId) {
+    public DevicesResponseDto getDevices(String requestId) {
         log.info("RequestId: {}", requestId);
-        GetDevicesResponseDto response = new GetDevicesResponseDto();
+        DevicesResponseDto response = new DevicesResponseDto();
         response.setRequestId(requestId);
 
         DevicesPayload payload = new DevicesPayload();
