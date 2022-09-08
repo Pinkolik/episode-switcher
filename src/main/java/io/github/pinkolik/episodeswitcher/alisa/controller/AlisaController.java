@@ -1,7 +1,7 @@
 package io.github.pinkolik.episodeswitcher.alisa.controller;
 
-import io.github.pinkolik.episodeswitcher.alisa.dto.GetDevicesResponseDto;
-import io.github.pinkolik.episodeswitcher.alisa.dto.UnlinkUserResponseDto;
+import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.GetDevicesResponseDto;
+import io.github.pinkolik.episodeswitcher.alisa.dto.unlinkuser.UnlinkUserResponseDto;
 import io.github.pinkolik.episodeswitcher.alisa.service.AlisaService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

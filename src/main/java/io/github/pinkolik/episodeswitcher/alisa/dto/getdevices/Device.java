@@ -1,12 +1,13 @@
-package io.github.pinkolik.episodeswitcher.alisa.dto;
+package io.github.pinkolik.episodeswitcher.alisa.dto.getdevices;
 
+import io.github.pinkolik.episodeswitcher.alisa.dto.common.capability.Capability;
 import lombok.Data;
 
 import java.util.List;
 import java.util.Map;
 
 @Data
-public class DeviceDto {
+public class Device {
 
     private String id;
 
@@ -20,9 +21,9 @@ public class DeviceDto {
 
     private Map<String, Object> customData;
 
-    private List<GetDevicesCapabilityDto> capabilities;
+    private List<Capability<?>> capabilities;
 
     private Map<String, String> properties;
 
-    private DeviceInfoDto deviceInfo;
+    private DeviceInfo deviceInfo;
 }

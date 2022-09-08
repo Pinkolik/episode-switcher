@@ -1,7 +1,7 @@
 package io.github.pinkolik.episodeswitcher.alisa.controller;
 
-import io.github.pinkolik.episodeswitcher.alisa.dto.GetDevicesResponseDto;
-import io.github.pinkolik.episodeswitcher.alisa.dto.UnlinkUserResponseDto;
+import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.GetDevicesResponseDto;
+import io.github.pinkolik.episodeswitcher.alisa.dto.unlinkuser.UnlinkUserResponseDto;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

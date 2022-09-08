@@ -1,9 +1,9 @@
-package io.github.pinkolik.episodeswitcher.alisa.dto;
+package io.github.pinkolik.episodeswitcher.alisa.dto.getdevices;
 
 import lombok.Data;
 
 @Data
-public class DeviceInfoDto {
+public class DeviceInfo {
 
     private String manufacturer;
 
