@@ -59,7 +59,7 @@ public class AlisaServiceImpl implements AlisaService {
         payload.setDevices(Collections.singletonList(device));
         response.setPayload(payload);
 
-        return null;
+        return response;
     }
 
     @Override

@@ -15,15 +15,14 @@ public class KeycloakUtils {
 
         Principal principal = (Principal) authentication.getPrincipal();
 
-        String userIdByToken = "";
+        String userId;
 
         if (principal instanceof KeycloakPrincipal) {
             KeycloakPrincipal<KeycloakSecurityContext> kPrincipal = (KeycloakPrincipal<KeycloakSecurityContext>) principal;
-            IDToken token = kPrincipal.getKeycloakSecurityContext().getIdToken();
-            userIdByToken = token.getSubject();
+            userId = kPrincipal.getName();
         } else {
             throw new IllegalStateException("Couldn't get userId");
         }
-        return userIdByToken;
+        return userId;
     }
 }
