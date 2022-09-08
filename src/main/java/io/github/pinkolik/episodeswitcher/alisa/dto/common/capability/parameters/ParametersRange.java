@@ -20,6 +20,6 @@ public class ParametersRange implements Parameters {
     }
 
     public String getUnit() {
-        return instance == null ? null : instance.getName();
+        return instance == null ? null : instance.getUnit();
     }
 }
