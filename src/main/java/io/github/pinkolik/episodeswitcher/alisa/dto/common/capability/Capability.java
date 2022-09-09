@@ -19,6 +19,6 @@ public class Capability <T extends Parameters> {
     private State state;
 
     public CapabilityType getType() {
-        return parameters == null ? null : parameters.getCapabilityType();
+        return parameters == null ? type : parameters.getCapabilityType();
     }
 }

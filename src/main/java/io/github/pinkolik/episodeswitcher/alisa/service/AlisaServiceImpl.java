@@ -7,6 +7,9 @@ import io.github.pinkolik.episodeswitcher.alisa.dto.common.capability.Capability
 import io.github.pinkolik.episodeswitcher.alisa.dto.common.capability.parameters.ParametersOnOff;
 import io.github.pinkolik.episodeswitcher.alisa.dto.common.capability.parameters.ParametersRange;
 import io.github.pinkolik.episodeswitcher.alisa.dto.common.enums.InstanceType;
+import io.github.pinkolik.episodeswitcher.alisa.dto.common.state.ActionResult;
+import io.github.pinkolik.episodeswitcher.alisa.dto.common.state.State;
+import io.github.pinkolik.episodeswitcher.alisa.dto.common.state.Status;
 import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.Device;
 import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.DeviceInfo;
 import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.DevicesPayload;
@@ -18,8 +21,10 @@ import io.github.pinkolik.episodeswitcher.util.KeycloakUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 
 @Slf4j
 @Service
@@ -76,12 +81,37 @@ public class AlisaServiceImpl implements AlisaService {
     public ActionResponseDto makeAction(String requestId, ActionRequestDto request) {
         log.info("RequestId: {}", requestId);
         log.info("Request: {}", request);
-        return new ActionResponseDto();
+        ActionResponseDto response = new ActionResponseDto();
+        response.setRequestId(requestId);
+        DevicesPayload payload = new DevicesPayload();
+
+        List<Device> devices = request.getPayload().getDevices();
+        payload.setDevices(new ArrayList<>(devices.size()));
+        for (Device device : devices) {
+            Device deviceResponse = new Device();
+            deviceResponse.setId(device.getId());
+            List<Capability<?>> capabilities = device.getCapabilities();
+            deviceResponse.setCapabilities(new ArrayList<>(capabilities.size()));
+            for (Capability<?> capability : capabilities) {
+                Capability<?> capabilityResponse = new Capability<>();
+                capabilityResponse.setType(capability.getType());
+                State state = new State();
+                state.setInstance(capability.getState().getInstance());
+                ActionResult actionResult = new ActionResult();
+                actionResult.setStatus(Status.DONE);
+                state.setActionResult(actionResult);
+                capabilityResponse.setState(state);
+            }
+        }
+
+        response.setPayload(payload);
+        return response;
     }
 
     @Override
     public QueryResponseDto getDevicesStatus(String requestId, QueryRequestDto request) {
         log.info("RequestId: {}", requestId);
+        log.info("Request: {}", request);
         QueryResponseDto response = new QueryResponseDto();
         response.setRequestId(requestId);
 
@@ -115,7 +145,7 @@ public class AlisaServiceImpl implements AlisaService {
 
         device.setCapabilities(Arrays.asList(getChannelsCapability(), getVolumeCapability()));
 
-        device.setProperties(null);//TODO Сюда можно впихнуть текущую громкость, серию, и т.д.
+        device.setProperties(null);
 
         DeviceInfo deviceInfo = new DeviceInfo();
         deviceInfo.setManufacturer("pinkolik");

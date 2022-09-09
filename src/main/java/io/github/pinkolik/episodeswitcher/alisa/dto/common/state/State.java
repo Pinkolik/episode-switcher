@@ -11,4 +11,6 @@ public class State {
     private Boolean relative;
 
     private Integer value;
+
+    private ActionResult actionResult;
 }
