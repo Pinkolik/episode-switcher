@@ -10,7 +10,7 @@ public class ParametersRange implements Parameters {
 
     private InstanceType instance;
 
-    private boolean randomAccess;
+    private Boolean randomAccess;
 
     private Range range;
 

@@ -1,5 +1,6 @@
 package io.github.pinkolik.episodeswitcher.alisa.controller;
 
+import io.github.pinkolik.episodeswitcher.alisa.dto.action.ActionRequestDto;
 import io.github.pinkolik.episodeswitcher.alisa.dto.action.ActionResponseDto;
 import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.DevicesResponseDto;
 import io.github.pinkolik.episodeswitcher.alisa.dto.query.QueryRequestDto;
@@ -24,5 +25,5 @@ public interface AlisaApi {
     ResponseEntity<QueryResponseDto> getDevicesStatus(@RequestHeader("X-Request-Id") String requestId, @RequestBody QueryRequestDto request);
 
     @PostMapping("/user/devices/action")
-    ResponseEntity<ActionResponseDto> makeAction(@RequestHeader("X-Request-Id") String requestId, @RequestBody String request);
+    ResponseEntity<ActionResponseDto> makeAction(@RequestHeader("X-Request-Id") String requestId, @RequestBody ActionRequestDto request);
 }

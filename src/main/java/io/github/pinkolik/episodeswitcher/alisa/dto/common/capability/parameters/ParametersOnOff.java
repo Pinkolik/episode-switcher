@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class ParametersOnOff implements Parameters {
 
-    private boolean split;
+    private Boolean split;
 
     @Override
     public CapabilityType getCapabilityType() {
