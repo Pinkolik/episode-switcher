@@ -1,5 +1,6 @@
 package io.github.pinkolik.episodeswitcher.alisa.service;
 
+import io.github.pinkolik.episodeswitcher.alisa.dto.action.ActionRequestDto;
 import io.github.pinkolik.episodeswitcher.alisa.dto.common.Range;
 import io.github.pinkolik.episodeswitcher.alisa.dto.common.capability.Capability;
 import io.github.pinkolik.episodeswitcher.alisa.dto.common.capability.parameters.ParametersOnOff;
@@ -9,6 +10,7 @@ import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.Device;
 import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.DeviceInfo;
 import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.DevicesPayload;
 import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.DevicesResponseDto;
+import io.github.pinkolik.episodeswitcher.alisa.dto.query.QueryResponseDto;
 import io.github.pinkolik.episodeswitcher.alisa.dto.unlinkuser.UnlinkUserResponseDto;
 import io.github.pinkolik.episodeswitcher.util.KeycloakUtils;
 import lombok.extern.slf4j.Slf4j;
@@ -66,6 +68,13 @@ public class AlisaServiceImpl implements AlisaService {
         parameters.setRange(range);
         capability.setParameters(parameters);
         return capability;
+    }
+
+    @Override
+    public QueryResponseDto getDevicesStatus(String requestId, ActionRequestDto request) {
+        log.info("RequestId: {}", requestId);
+        log.info("Request: {}", request);
+        return new QueryResponseDto();
     }
 
     @Override
