@@ -21,8 +21,4 @@ public class Capability <T extends Parameters> {
     public CapabilityType getType() {
         return parameters == null ? null : parameters.getCapabilityType();
     }
-
-    public void setType(CapabilityType type) {
-        this.type = type;
-    }
 }
