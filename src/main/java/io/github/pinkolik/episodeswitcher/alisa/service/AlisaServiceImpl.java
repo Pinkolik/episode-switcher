@@ -73,8 +73,18 @@ public class AlisaServiceImpl implements AlisaService {
     @Override
     public QueryResponseDto getDevicesStatus(String requestId, QueryRequestDto request) {
         log.info("RequestId: {}", requestId);
-        log.info("Request: {}", request);
-        return new QueryResponseDto();
+        QueryResponseDto response = new QueryResponseDto();
+        response.setRequestId(requestId);
+
+        DevicesPayload payload = new DevicesPayload();
+        Device device = new Device();
+        device.setId(DEVICE_ID);
+        device.setCapabilities(Collections.emptyList());
+
+        payload.setDevices(Collections.singletonList(device));
+
+        response.setPayload(payload);
+        return response;
     }
 
     @Override
