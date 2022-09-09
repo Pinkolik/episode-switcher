@@ -101,7 +101,9 @@ public class AlisaServiceImpl implements AlisaService {
                 actionResult.setStatus(Status.DONE);
                 state.setActionResult(actionResult);
                 capabilityResponse.setState(state);
+                deviceResponse.getCapabilities().add(capabilityResponse);
             }
+            payload.getDevices().add(deviceResponse);
         }
 
         response.setPayload(payload);
