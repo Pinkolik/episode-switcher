@@ -3,6 +3,7 @@ package io.github.pinkolik.episodeswitcher.alisa.controller;
 import io.github.pinkolik.episodeswitcher.alisa.dto.action.ActionRequestDto;
 import io.github.pinkolik.episodeswitcher.alisa.dto.action.ActionResponseDto;
 import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.DevicesResponseDto;
+import io.github.pinkolik.episodeswitcher.alisa.dto.query.QueryRequestDto;
 import io.github.pinkolik.episodeswitcher.alisa.dto.query.QueryResponseDto;
 import io.github.pinkolik.episodeswitcher.alisa.dto.unlinkuser.UnlinkUserResponseDto;
 import io.github.pinkolik.episodeswitcher.alisa.service.AlisaService;
@@ -34,7 +35,7 @@ public class AlisaController implements AlisaApi {
     }
 
     @Override
-    public ResponseEntity<QueryResponseDto> getDevicesStatus(String requestId, ActionRequestDto request) {
+    public ResponseEntity<QueryResponseDto> getDevicesStatus(String requestId, QueryRequestDto request) {
         return ResponseEntity.ok(alisaService.getDevicesStatus(requestId, request));
     }
 
