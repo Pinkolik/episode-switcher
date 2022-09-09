@@ -41,6 +41,6 @@ public class AlisaController implements AlisaApi {
 
     @Override
     public ResponseEntity<ActionResponseDto> makeAction(String requestId, ActionRequestDto request) {
-        return null;
+        return ResponseEntity.ok(alisaService.makeAction(requestId, request));
     }
 }

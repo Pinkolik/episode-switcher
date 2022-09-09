@@ -1,5 +1,7 @@
 package io.github.pinkolik.episodeswitcher.alisa.service;
 
+import io.github.pinkolik.episodeswitcher.alisa.dto.action.ActionRequestDto;
+import io.github.pinkolik.episodeswitcher.alisa.dto.action.ActionResponseDto;
 import io.github.pinkolik.episodeswitcher.alisa.dto.common.Range;
 import io.github.pinkolik.episodeswitcher.alisa.dto.common.capability.Capability;
 import io.github.pinkolik.episodeswitcher.alisa.dto.common.capability.parameters.ParametersOnOff;
@@ -68,6 +70,13 @@ public class AlisaServiceImpl implements AlisaService {
         parameters.setRange(range);
         capability.setParameters(parameters);
         return capability;
+    }
+
+    @Override
+    public ActionResponseDto makeAction(String requestId, ActionRequestDto request) {
+        log.info("RequestId: {}", requestId);
+        log.info("Request: {}", request);
+        return new ActionResponseDto();
     }
 
     @Override

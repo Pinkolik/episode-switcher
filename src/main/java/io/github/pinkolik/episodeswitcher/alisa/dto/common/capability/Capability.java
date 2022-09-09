@@ -13,6 +13,12 @@ public class Capability <T extends Parameters> {
 
     private T parameters;
 
+    private CapabilityType type;
+
+    private int value;
+
+    private boolean relative;
+
     public CapabilityType getType() {
         return parameters == null ? null : parameters.getCapabilityType();
     }
