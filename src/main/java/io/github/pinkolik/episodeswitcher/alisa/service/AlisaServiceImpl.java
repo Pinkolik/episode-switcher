@@ -17,7 +17,10 @@ import io.github.pinkolik.episodeswitcher.alisa.dto.getdevices.DevicesResponseDt
 import io.github.pinkolik.episodeswitcher.alisa.dto.query.QueryRequestDto;
 import io.github.pinkolik.episodeswitcher.alisa.dto.query.QueryResponseDto;
 import io.github.pinkolik.episodeswitcher.alisa.dto.unlinkuser.UnlinkUserResponseDto;
+import io.github.pinkolik.episodeswitcher.client.dto.CommandDto;
+import io.github.pinkolik.episodeswitcher.client.service.ClientService;
 import io.github.pinkolik.episodeswitcher.util.KeycloakUtils;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +31,7 @@ import java.util.List;
 
 @Slf4j
 @Service
+@RequiredArgsConstructor
 public class AlisaServiceImpl implements AlisaService {
 
     private static final String DEVICE_DESCRIPTION = "Компьютер, на котором можно управлять сериалами";
@@ -39,6 +43,8 @@ public class AlisaServiceImpl implements AlisaService {
     private static final String DEVICE_ID = "0";
 
     private static final String DEVICE_NAME = "Компьютер";
+
+    private final ClientService clientService;
 
     private Capability<ParametersOnOff> getOnOffCapability() {
         Capability<ParametersOnOff> capability = new Capability<>();
@@ -95,13 +101,19 @@ public class AlisaServiceImpl implements AlisaService {
             for (Capability<?> capability : capabilities) {
                 Capability<?> capabilityResponse = new Capability<>();
                 capabilityResponse.setType(capability.getType());
-                State state = new State();
-                state.setInstance(capability.getState().getInstance());
+                State state = capability.getState();
+                State stateResponse = new State();
+                stateResponse.setInstance(state.getInstance());
                 ActionResult actionResult = new ActionResult();
                 actionResult.setStatus(Status.DONE);
-                state.setActionResult(actionResult);
-                capabilityResponse.setState(state);
+                stateResponse.setActionResult(actionResult);
+                capabilityResponse.setState(stateResponse);
                 deviceResponse.getCapabilities().add(capabilityResponse);
+                CommandDto command = new CommandDto();
+                command.setInstance(state.getInstance());
+                command.setRelative(state.getRelative());
+                command.setValue(state.getValue());
+                clientService.putNextCommand(KeycloakUtils.getUserId(), command);
             }
             payload.getDevices().add(deviceResponse);
         }

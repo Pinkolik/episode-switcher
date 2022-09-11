@@ -37,7 +37,8 @@ public class SecurityConfig extends KeycloakWebSecurityConfigurerAdapter {
         //@formatter:off
         http.authorizeRequests()
             .antMatchers(HttpMethod.HEAD, "/api/alisa/v1.0").permitAll()
-            .antMatchers("/api/alisa/v1.0/user/**").hasRole("USER")
+            .antMatchers("/api/alisa/v1.0/**").hasRole("USER")
+            .antMatchers("/api/client/v1.0/**").hasRole("USER")
             .anyRequest().denyAll();
         //@formatter:on
         http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
